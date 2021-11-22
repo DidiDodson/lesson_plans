@@ -83,13 +83,21 @@ How can we get the revenue based on the course?
 ##### Write queries for the following:
 
 1. Return all `main` courses. Hint: What ActiveRecord method would you use to get this?
+
        **select * from items where course='main';**
+       
 2. Return only the names of the `main` courses.
+
        **select name from items where course='main';**
+       
 3. Return the min and max value for the `main` courses.
+
        **select max(revenue), min(revenue) from items where course='main';**
+       
 4. What's the total revenue for all `main` courses?
+
       ** select sum(revenue) from items where course='main';**
+      
 
 #### INNER JOINS
 
