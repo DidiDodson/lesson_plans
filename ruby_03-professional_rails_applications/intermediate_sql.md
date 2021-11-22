@@ -56,14 +56,19 @@ VALUES ('lobster mac n cheese', 1200, 'side'),
 ##### Write queries for the following:
 
 1. What's the total revenue for all items? 
+
        select sum(revenue) from items;
-3. What's the average revenue for all items?
+2. What's the average revenue for all items?
+
        select avg(revenue) from items;
-5. What's the minimum revenue for all items?
+3. What's the minimum revenue for all items?
+
        select min(revenue) from items;
-7. What's the maximum revenue for all items?
+4. What's the maximum revenue for all items?
+
        select max(revenue) from items;
-9. What the count for items with a name?
+5. What the count for items with a name?
+
        select count(name) from items;
 
 Let's create an item that has all NULL values:
@@ -84,19 +89,19 @@ How can we get the revenue based on the course?
 
 1. Return all `main` courses. Hint: What ActiveRecord method would you use to get this?
 
-       **select * from items where course='main';**
+       select * from items where course='main';
        
 2. Return only the names of the `main` courses.
 
-       **select name from items where course='main';**
+       select name from items where course='main';
        
 3. Return the min and max value for the `main` courses.
 
-       **select max(revenue), min(revenue) from items where course='main';**
+       select max(revenue), min(revenue) from items where course='main';
        
 4. What's the total revenue for all `main` courses?
 
-      ** select sum(revenue) from items where course='main';**
+       select sum(revenue) from items where course='main';
       
 
 #### INNER JOINS
@@ -182,8 +187,10 @@ id |         name         | revenue | season_id | id |  name
 This is useful, but we probably don't need all of the information from both tables.
 
 * Can you get it to display only the name for the item and the name for the season?
+
        select items.name, seasons.name from items inner join seasons on items.season_id = seasons.id;
 * Having two columns with the same name is confusing. Can you customize each heading using `AS`?
+
        select items.name as item_name, seasons.name as season_name from items inner join seasons on items.season_id = seasons.id;
 
 It should look like this:
@@ -206,6 +213,7 @@ Now let's combine multiple `INNER JOIN`s to pull data from three tables `items`,
 * Write a query that pulls all the category names for `arugula salad`.
   Hint: Use multiple `INNER JOIN`s and a `WHERE` clause.
   
+  
 select items.name, categories.name from items inner join item_categories on items.id = item_categories.item_id inner join categories on item_categories.category_id = categories.id;
 
 Can you get your return value to look like this?
@@ -221,6 +229,7 @@ arugula salad | vegetarian
 ```
 
 Can you change the column headings?
+
 
 select items.name as item_name, categories.name as category_name from items inner join item_categories on items.id = item_categories.item_id inner join categories on item_categories.category_id = categories.id;
 
@@ -299,8 +308,10 @@ id  |         name        | revenue | season_id | id |  name
 What do you think a `RIGHT OUTER JOIN` will do?
 
 * Write a query to test your guess. 
+
        select * from items i right outer join seasons s on i.season_id = s.id;
 * Insert data into the right table that will not get returned on an `INNER JOIN`.
+
        insert into items (name, revenue, season_id)
        values ('italian beef', 600, NULL);
 
